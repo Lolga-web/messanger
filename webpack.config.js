@@ -62,4 +62,20 @@ module.exports = {
             favicon: './src/favicon.ico',
         })
     ],
+    devServer: {
+        port: 3301,
+        hot: true,
+        open: false,
+        historyApiFallback: {
+            index: './public/index.html'
+        },
+        proxy: {
+            '/api': {
+                target: 'http://localhost:9090',
+                pathRewrite: { '^/api' : '' },
+                secure: false,
+                changeOrigin: true,
+            }
+        }
+    },
 };
